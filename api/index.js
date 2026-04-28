@@ -31,7 +31,7 @@ const connectDB = async () => {
 app.use(async (req, res, next) => {
   await connectDB();
   next();
-});
+}); 
 app.use(cors(corsOptions));
 app.use(express.json()); // Essential for parsing JSON from React
 
