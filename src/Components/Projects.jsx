@@ -33,20 +33,22 @@ const Projects = () => {
           <div className="h-1 w-20 bg-rose-900 mt-4"></div>
         </div>
 
-        {
-          loading ? <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: Infinity, ease: "easeOut" }}
-          className="text-center py-20 text-gray font-bold">Loading...</motion.div> :
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {
-                projects.map((project, index) => (
-                  <ProjectCard key={project._id} project={project} index={index} />
-                ))
-              }
-            </div>
-        }
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {loading ? (
+            // Show 3 skeletons while loading
+            [...Array(3)].map((_, i) => <ProjectSkeleton key={i} />)
+          ) : (
+            projects.map((project, index) => (
+              <ProjectCard key={project._id} project={project} index={index} />
+            ))
+          )}
+        </div>
+        
+        {!loading && projects.length === 0 && (
+          <div className="text-center text-gray-500 py-10">
+            No projects found in the database.
+          </div>
+        )}
       </div>
     </section>
   );
