@@ -41,8 +41,18 @@ app.use(express.json()); // Essential for parsing JSON from React
 // Route to create a project with an image
 app.post('/api/projects', upload.single('image'), async (req, res) => {
   try {
+    // Check if file exists
+    if (!req.file) {
+      return res.status(400).json({ success: false, error: "Please upload an image file using the key 'image'" });
+    }
+
     const newProject = new Project({
-      ...req.body,
+      title: req.body.title,
+      type: req.body.type,
+      description: req.body.description,
+      // Handle tech stack if sent as a string (common in form-data)
+      tech: Array.isArray(req.body.tech) ? req.body.tech : req.body.tech.split(',').map(t => t.trim()),
+      link: req.body.link,
       image: req.file.path,            // Cloudinary URL
       cloudinary_id: req.file.filename // Cloudinary ID
     });
