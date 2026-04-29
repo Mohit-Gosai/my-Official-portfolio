@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ProjectCard from './ProjectCard';
 import { motion } from 'framer-motion';
+import ProjectSkeleton from './ProjectSkeleton';
 
 const Projects = () => {
   const [projects, setProjects] = useState([]);
