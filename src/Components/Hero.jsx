@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 const Hero = () => {
   const techStack = [
     "MongoDB", "Express", "React", "Node.js", 
-    "Git", "GitHub", "Thunder Client", "Tailwind CSS", 
+    "Git", "GitHub", "Vercel", "Thunder Client", "Tailwind CSS", 
     "Framer Motion", "Redux"
   ];
 
