@@ -6,7 +6,8 @@ const projectSchema = new mongoose.Schema({
   description: { type: String, required: true },
   tech: [String],
   link: String,
-  image: String
+  image: { type: String, required: true }, // The URL from Cloudinary
+  cloudinary_id: { type: String }         // For deleting/updating images
 });
 
 module.exports = mongoose.model('Project', projectSchema);

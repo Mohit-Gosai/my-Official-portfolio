@@ -4,6 +4,7 @@ const cors = require('cors');
 require('dotenv').config();
 const Message = require('./models/messageModel');
 const Project = require('./models/projectModel');
+const upload = require('./middleware/multer');
 
 const app = express();
 // In server/index.js
@@ -36,7 +37,22 @@ app.use(cors(corsOptions));
 app.use(express.json()); // Essential for parsing JSON from React
 
 
-// The API Route
+
+// Route to create a project with an image
+app.post('/api/projects', upload.single('image'), async (req, res) => {
+  try {
+    const newProject = new Project({
+      ...req.body,
+      image: req.file.path,            // Cloudinary URL
+      cloudinary_id: req.file.filename // Cloudinary ID
+    });
+    
+    await newProject.save();
+    res.status(201).json({ success: true, data: newProject });
+  } catch (error) {
+    res.status(500).json({ success: false, error: error.message });
+  }
+});
 
 // GET all projects
 app.get('/api/projects', async (req, res) => {
