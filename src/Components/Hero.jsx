@@ -69,7 +69,7 @@ const Hero = () => {
             <a href="https://github.com/Mohit-Gosai">View My Work</a>
           </button>
           <button className="border border-gray-800 hover:border-rose-900 text-gray-400 hover:text-white px-10 py-4 rounded-sm font-bold uppercase tracking-widest transition-all">
-            <a href="/Resume.docx" download="Mohit_Gosai-Resume">Download CV</a>
+            <a href="/Mohit_Gosai_Resume.pdf" download="Mohit_Gosai-Resume">Download CV</a>
           </button>
         </motion.div>
       </div>
