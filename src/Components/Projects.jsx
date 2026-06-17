@@ -12,7 +12,10 @@ const Projects = () => {
       try {
         const response = await fetch('/api/projects');
         const data = await response.json();
-        setProjects(data);
+        const sortedProjects = Array.isArray(data)
+          ? [...data].sort((a, b) => (a.rank ?? 0) - (b.rank ?? 0))
+          : [];
+        setProjects(sortedProjects);
         setLoading(false);
       } catch (error) {
         console.error("Failed to fetch projects:", error);

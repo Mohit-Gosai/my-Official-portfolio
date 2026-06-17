@@ -67,7 +67,7 @@ app.post('/api/projects', upload.single('image'), async (req, res) => {
 // GET all projects
 app.get('/api/projects', async (req, res) => {
   try {
-    const projects = await Project.find();
+    const projects = await Project.find().sort({ rank: 1 });
     res.json(projects);
   } catch (error) {
     res.status(500).json({ message: error.message });
